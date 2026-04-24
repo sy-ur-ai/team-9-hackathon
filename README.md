@@ -172,6 +172,140 @@ The hackathon demo shows the decision and visualization layer. In the future, th
 
 This is a real-time visual sales assistant for design-build firms. It listens to client needs, then turns the vendor's spoken recommendations into live visual plans, tradeoffs, and proposal-ready scope.
 
+## Current Build
+
+This repo now contains the minimum PMO-owned demo scaffold:
+
+- Vite + React + TypeScript app shell
+- Scripted luxury park sales conversation
+- Manual transcript intake for testing trigger phrases
+- Speaker-aware event model for `client`, `vendor`, and `assistant`
+- Deterministic proposal engine that maps conversation beats into plan state
+- Top-down park concept view using HTML/CSS-rendered elements
+- Client priorities, vendor commitments, design rationale, metrics, and proposal summary panels
+
+The first version is intentionally deterministic. It does not depend on live image generation, live microphone capture, or external services.
+
+## Local Setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the local demo:
+
+```bash
+npm run dev
+```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```text
+src/
+  App.tsx             Main demo experience and UI composition
+  demoScript.ts       Luxury park pitch conversation beats
+  proposalEngine.ts   Deterministic trigger mapping and proposal state reducer
+  types.ts            Shared speaker, transcript, feature, and proposal types
+  styles.css          App layout, site plan, panels, and responsive styling
+```
+
+## PMO-Owned Modules
+
+The PMO-owned layer is responsible for keeping the demo reliable and demo-ready:
+
+- `src/demoScript.ts`: the approved roleplay script and ordered demo beats
+- `src/types.ts`: shared event and proposal contracts
+- `src/proposalEngine.ts`: trigger phrases, proposal state updates, and deterministic business logic
+- `src/App.tsx`: demo shell, transcript controls, side panels, site-plan presentation, and summary view
+
+Keep this layer stable during the hackathon. If a teammate needs to integrate a module, connect through the existing conversation and proposal concepts instead of replacing the demo shell.
+
+## Voice-to-Text Integration Expectations
+
+Voice-to-text is teammate-owned and is not implemented in this scaffold.
+
+When that module is ready, it should provide transcript events that match this shape:
+
+```ts
+type Speaker = "client" | "vendor" | "assistant";
+
+interface ConversationEvent {
+  id: string;
+  speaker: Speaker;
+  text: string;
+}
+```
+
+Integration target:
+
+- The voice module should emit finalized transcript turns, not partial word streams.
+- Speaker detection should map into `client`, `vendor`, or `assistant`.
+- The app should append emitted events to the same event list currently used by the scripted runner and manual input.
+- Client turns should primarily update context and priorities.
+- Vendor turns should drive visual and proposal changes.
+
+Until the voice module lands, use the `Next beat` button and manual transcript input to rehearse the demo.
+
+## Visual Canvas Integration Expectations
+
+Visual assistant canvas generation is teammate-owned and is not implemented in this scaffold.
+
+The current site plan is a deterministic HTML/CSS view backed by `ProposalState.features`. When the canvas module is ready, it should consume proposal state rather than parse raw transcript text directly.
+
+Recommended integration contract:
+
+```ts
+interface VisualCanvasProps {
+  features: SiteFeature[];
+  priorities: string[];
+  commitments: string[];
+  rationales: string[];
+}
+```
+
+Integration expectations:
+
+- Keep the proposal engine as the source of truth for what changed and why.
+- Render visible `SiteFeature` items from proposal state.
+- Preserve phase indicators for Phase 1 and Phase 2.
+- Keep rendering fast and deterministic for the live demo.
+- Avoid adding live image generation to the critical path unless it can fail gracefully without blocking the roleplay.
+
+## Demo Script Flow
+
+Use the built-in script in `src/demoScript.ts` for the first pitch:
+
+1. Client raises family-park goals and noise concerns.
+2. Vendor places playground west, adds quiet garden walk east, and adds native tree buffer.
+3. Client raises budget concerns.
+4. Vendor moves pavilion and restrooms to Phase 2.
+5. Client raises accessibility and neighborhood approval.
+6. Vendor highlights ADA loop, compact drop-off, and proposal summary.
+
+The key demo principle: client speech captures context; vendor speech commits design moves.
+
+## Working Agreement
+
+- Do not replace the PMO-owned demo shell during integration.
+- Add teammate modules behind clear boundaries and keep the scripted demo path working.
+- Preserve `npm run build` as the basic health check before demos.
+- Prefer deterministic fallbacks over impressive features that can fail live.
+- Keep README instructions current whenever setup, commands, or integration contracts change.
+
 # Demo script - initial draft
 
 # 1. 🔥 Opening (0:00–0:30) — *Hook + Reframe*
