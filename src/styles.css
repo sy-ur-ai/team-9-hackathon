@@ -531,18 +531,50 @@ button {
   padding: 7px 10px;
 }
 
-.presentation-controls {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  z-index: 20;
-}
-
 .presentation-mode {
   background:
     linear-gradient(180deg, rgba(10, 28, 23, 0.9), rgba(25, 54, 44, 0.92)),
     #18352c;
   padding: 18px;
+}
+
+.presentation-overlay {
+  display: grid;
+  gap: 12px;
+  left: 42px;
+  max-width: min(720px, calc(100% - 84px));
+  position: absolute;
+  right: 42px;
+  top: 42px;
+  z-index: 20;
+}
+
+.presentation-caption {
+  background: rgba(255, 253, 247, 0.91);
+  border: 1px solid rgba(216, 189, 119, 0.48);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(19, 31, 25, 0.18);
+  justify-self: flex-start;
+  max-width: 660px;
+  padding: 14px 16px;
+}
+
+.presentation-caption span {
+  color: #7b4f2d;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.presentation-caption p {
+  color: #24312b;
+  font-size: clamp(1rem, 1.6vw, 1.24rem);
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0;
 }
 
 .presentation-mode::after {
@@ -632,6 +664,13 @@ button {
   .manual-entry input,
   .icon-button {
     width: 100%;
+  }
+
+  .presentation-overlay {
+    left: 28px;
+    max-width: calc(100% - 56px);
+    right: 28px;
+    top: 28px;
   }
 
   .site-plan {

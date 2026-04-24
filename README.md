@@ -343,6 +343,21 @@ Use the built-in script in `src/demoScript.ts` for the first pitch:
 
 The key demo principle: client speech captures context; vendor speech commits design moves.
 
+## Manual Fallback Presentation
+
+If voice-to-text is not ready, use the app as a controlled click-through demo:
+
+1. Click `Reset` before the live demo starts.
+2. Click `Present` to show only the visual proposal surface.
+3. Press the right arrow key to advance each script beat in order.
+4. Press the left arrow key to step back one beat if the presenter gets ahead.
+5. Press `Escape` to return to the full dashboard with transcript, priorities, commitments, rationale, metrics, and summary.
+6. Read or roleplay the exact caption shown on screen.
+7. Let client beats establish context without changing the park plan.
+8. Let vendor beats trigger the visible park updates.
+
+The presentation mode is intentionally manual. It is the worst-case demo path when microphone capture, transcription, or speaker detection is not ready.
+
 ## Working Agreement
 
 - Do not replace the PMO-owned demo shell during integration.

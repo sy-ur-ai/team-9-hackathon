@@ -1,10 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   CircleDollarSign,
   Clock3,
   Maximize2,
   Mic,
-  Minimize2,
   Play,
   RotateCcw,
   Send,
@@ -30,6 +29,7 @@ function App() {
 
   const proposal = useMemo(() => reduceConversation(activeEvents), [activeEvents]);
   const nextBeat = demoScript[activeEvents.length];
+  const latestBeat = activeEvents[activeEvents.length - 1];
   const visibleFeatures = Object.values(proposal.features).filter((feature) => feature.visible);
 
   const addEvent = (event: ConversationEvent) => {
@@ -56,6 +56,38 @@ function App() {
     });
     setDraft("");
   };
+
+  useEffect(() => {
+    if (!isPresenting) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setActiveEvents((current) => {
+          const eventToAdd = demoScript[current.length];
+          return eventToAdd ? [...current, eventToAdd] : current;
+        });
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setActiveEvents((current) => current.slice(0, -1));
+      }
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsPresenting(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isPresenting]);
 
   return (
     <main className={`app-shell ${isPresenting ? "presentation-mode" : ""}`}>
@@ -88,11 +120,19 @@ function App() {
       <section className="demo-grid">
         <div className="stage-panel">
           {isPresenting ? (
-            <div className="presentation-controls">
-              <button className="secondary-button" type="button" onClick={() => setIsPresenting(false)}>
-                <Minimize2 size={17} aria-hidden="true" />
-                Exit presentation
-              </button>
+            <div className="presentation-overlay">
+              <div className="presentation-caption" aria-live="polite">
+                <span>
+                  {latestBeat
+                    ? `${speakerLabels[latestBeat.speaker]} beat ${activeEvents.length} of ${demoScript.length}`
+                    : "Manual presentation ready"}
+                </span>
+                <p>
+                  {latestBeat
+                    ? latestBeat.text
+                    : "Presentation ready. Press the right arrow key to start the exact fallback script."}
+                </p>
+              </div>
             </div>
           ) : null}
           <div className="section-heading">
