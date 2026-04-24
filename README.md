@@ -206,6 +206,8 @@ Then add your real OpenAI key to `.env`:
 OPENAI_API_KEY=sk-...
 OPENAI_MODEL=gpt-5.4-mini
 VITE_OPENAI_MODEL=gpt-5.4-mini
+OPENAI_TRANSCRIBE_MODEL=gpt-4o-mini-transcribe
+VITE_OPENAI_TRANSCRIBE_MODEL=gpt-4o-mini-transcribe
 ```
 
 Run the local demo:
@@ -240,11 +242,13 @@ src/
 
 ## Environment Variables
 
-The default OpenAI model is `gpt-5.4-mini`.
+The default planning/reasoning model is `gpt-5.4-mini`. The default speech-to-text model is `gpt-4o-mini-transcribe`.
 
 - `OPENAI_API_KEY`: local-only secret for future server-side OpenAI calls
 - `OPENAI_MODEL`: server-side default model name
 - `VITE_OPENAI_MODEL`: non-secret model label available to the Vite client
+- `OPENAI_TRANSCRIBE_MODEL`: server-side speech-to-text model name
+- `VITE_OPENAI_TRANSCRIBE_MODEL`: non-secret speech-to-text model label available to the Vite client
 
 Do not expose `OPENAI_API_KEY` through a `VITE_` variable. Vite embeds `VITE_` variables into the browser bundle, so real OpenAI calls should go through a server-side route or service once that layer exists.
 
@@ -263,6 +267,8 @@ Keep this layer stable during the hackathon. If a teammate needs to integrate a 
 
 Voice-to-text is teammate-owned and is not implemented in this scaffold.
 
+Use `gpt-4o-mini-transcribe` as the default speech-to-text model. If transcription quality becomes a visible demo risk, switch the server-side value to `gpt-4o-transcribe` without changing the client event contract.
+
 When that module is ready, it should provide transcript events that match this shape:
 
 ```ts
@@ -277,11 +283,25 @@ interface ConversationEvent {
 
 Integration target:
 
+- Browser code records microphone audio and sends the audio blob to a server-side endpoint.
+- The server-side endpoint reads `OPENAI_API_KEY` and `OPENAI_TRANSCRIBE_MODEL`.
+- The server calls OpenAI's audio transcription endpoint and returns finalized transcript turns.
 - The voice module should emit finalized transcript turns, not partial word streams.
 - Speaker detection should map into `client`, `vendor`, or `assistant`.
 - The app should append emitted events to the same event list currently used by the scripted runner and manual input.
 - Client turns should primarily update context and priorities.
 - Vendor turns should drive visual and proposal changes.
+
+Recommended server-side transcription shape:
+
+```ts
+const transcription = await openai.audio.transcriptions.create({
+  file: audioFile,
+  model: process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-mini-transcribe",
+});
+```
+
+Do not send `OPENAI_API_KEY` to the browser. The Vite client may show the model label through `VITE_OPENAI_TRANSCRIBE_MODEL`, but it must not perform authenticated transcription calls directly.
 
 Until the voice module lands, use the `Next beat` button and manual transcript input to rehearse the demo.
 

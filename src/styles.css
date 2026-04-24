@@ -104,6 +104,13 @@ button {
   max-width: 560px;
 }
 
+.model-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
 .model-pill {
   background: rgba(255, 253, 247, 0.12);
   border: 1px solid rgba(216, 189, 119, 0.34);
@@ -112,7 +119,6 @@ button {
   display: inline-flex;
   font-size: 0.78rem;
   font-weight: 800;
-  margin: 14px 0 0;
   padding: 7px 11px;
 }
 

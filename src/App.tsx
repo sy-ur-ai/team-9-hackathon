@@ -64,7 +64,10 @@ function App() {
           <p className="eyebrow">Team 9 Hackathon Demo</p>
           <h1>Live Visual Sales Assistant</h1>
           <p className="hero-copy">A premium park design-build conversation, converted into a live proposal.</p>
-          <p className="model-pill">Default model: {openAIConfig.defaultModel}</p>
+          <div className="model-row" aria-label="Default OpenAI models">
+            <span className="model-pill">Reasoning: {openAIConfig.defaultModel}</span>
+            <span className="model-pill">Speech-to-text: {openAIConfig.defaultTranscribeModel}</span>
+          </div>
         </div>
         <div className="topbar-actions">
           <button className="secondary-button" type="button" onClick={() => setActiveEvents([])}>
