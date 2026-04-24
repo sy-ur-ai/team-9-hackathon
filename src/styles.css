@@ -1,6 +1,6 @@
 :root {
   color: #24312b;
-  background: #f5f3ec;
+  background: #18352c;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
@@ -28,17 +28,45 @@ button {
 }
 
 .app-shell {
+  background:
+    linear-gradient(115deg, rgba(18, 48, 39, 0.92) 0 38%, rgba(245, 241, 229, 0.94) 38% 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    #18352c;
+  background-size: auto, 44px 44px, 44px 44px, auto;
   min-height: 100vh;
   padding: 24px;
+  position: relative;
+}
+
+.app-shell::before {
+  background:
+    linear-gradient(90deg, transparent 0 10%, rgba(201, 173, 110, 0.24) 10% 10.3%, transparent 10.3% 100%),
+    linear-gradient(0deg, transparent 0 22%, rgba(255, 255, 255, 0.18) 22% 22.2%, transparent 22.2% 100%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+}
+
+.app-shell::after {
+  border: 1px solid rgba(201, 173, 110, 0.42);
+  content: "";
+  inset: 14px;
+  pointer-events: none;
+  position: fixed;
 }
 
 .topbar {
   align-items: center;
+  color: #fffdf7;
   display: flex;
   gap: 24px;
   justify-content: space-between;
   margin: 0 auto 20px;
   max-width: 1440px;
+  position: relative;
+  z-index: 1;
 }
 
 .topbar h1,
@@ -51,15 +79,41 @@ button {
 .topbar h1 {
   font-size: clamp(2rem, 5vw, 4.5rem);
   line-height: 0.95;
+  max-width: 780px;
 }
 
 .eyebrow {
-  color: #7b4f2d;
+  color: #a06f35;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   margin: 0 0 6px;
   text-transform: uppercase;
+}
+
+.topbar .eyebrow {
+  color: #d8bd77;
+}
+
+.hero-copy {
+  color: rgba(255, 253, 247, 0.78);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.45;
+  margin: 14px 0 0;
+  max-width: 560px;
+}
+
+.model-pill {
+  background: rgba(255, 253, 247, 0.12);
+  border: 1px solid rgba(216, 189, 119, 0.34);
+  border-radius: 999px;
+  color: rgba(255, 253, 247, 0.84);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 14px 0 0;
+  padding: 7px 11px;
 }
 
 .topbar-actions,
@@ -86,6 +140,7 @@ button {
 
 .primary-button {
   background: #1f6b52;
+  box-shadow: 0 12px 28px rgba(31, 107, 82, 0.26);
   color: #fff;
   padding: 0 18px;
 }
@@ -96,7 +151,8 @@ button {
 }
 
 .secondary-button {
-  background: #fff;
+  background: rgba(255, 253, 247, 0.94);
+  border: 1px solid rgba(201, 173, 110, 0.32);
   color: #24312b;
   padding: 0 16px;
 }
@@ -114,20 +170,27 @@ button {
   grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.7fr);
   margin: 0 auto;
   max-width: 1440px;
+  position: relative;
+  z-index: 1;
 }
 
 .stage-panel,
 .side-panel,
 .transcript-panel,
 .summary-panel {
-  background: #fffdf7;
-  border: 1px solid #ded8cb;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 253, 247, 0.93);
+  border: 1px solid rgba(222, 216, 203, 0.9);
   border-radius: 8px;
-  box-shadow: 0 18px 45px rgba(58, 47, 36, 0.08);
+  box-shadow: 0 22px 60px rgba(28, 35, 31, 0.16);
 }
 
 .stage-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0.96), rgba(246, 241, 231, 0.96)),
+    #fffdf7;
   padding: 18px;
+  position: relative;
 }
 
 .side-panel {
@@ -179,16 +242,38 @@ button {
 
 .site-plan {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.46) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.46) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(68, 92, 77, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(68, 92, 77, 0.08) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(226, 233, 213, 0.95), rgba(189, 214, 185, 0.94) 48%, rgba(221, 228, 211, 0.95)),
     #dce8d0;
-  background-size: 28px 28px;
-  border: 1px solid #b7c8a7;
+  background-size: 28px 28px, 28px 28px, auto, auto;
+  border: 1px solid rgba(98, 128, 87, 0.58);
   border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
   min-height: 520px;
   overflow: hidden;
   padding: 22px;
   position: relative;
+}
+
+.site-plan::before {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  content: "";
+  inset: 14px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.site-plan::after {
+  background:
+    linear-gradient(28deg, transparent 0 54%, rgba(120, 139, 118, 0.2) 54% 55%, transparent 55% 100%),
+    linear-gradient(152deg, transparent 0 62%, rgba(255, 255, 255, 0.3) 62% 62.6%, transparent 62.6% 100%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
 }
 
 .parcel-label {
@@ -205,11 +290,12 @@ button {
 }
 
 .parcel-boundary {
-  border: 3px solid #6e8c64;
+  border: 3px solid rgba(94, 121, 83, 0.86);
   border-radius: 8px;
   height: 100%;
   min-height: 476px;
   position: relative;
+  z-index: 2;
 }
 
 .entry-label {
@@ -244,6 +330,7 @@ button {
   padding: 8px;
   position: absolute;
   text-align: center;
+  z-index: 3;
 }
 
 .site-feature span {
@@ -436,6 +523,58 @@ button {
   font-size: 0.82rem;
   font-weight: 900;
   padding: 7px 10px;
+}
+
+.presentation-controls {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  z-index: 20;
+}
+
+.presentation-mode {
+  background:
+    linear-gradient(180deg, rgba(10, 28, 23, 0.9), rgba(25, 54, 44, 0.92)),
+    #18352c;
+  padding: 18px;
+}
+
+.presentation-mode::after {
+  inset: 18px;
+}
+
+.presentation-mode .topbar,
+.presentation-mode .side-panel,
+.presentation-mode .transcript-panel,
+.presentation-mode .summary-panel {
+  display: none;
+}
+
+.presentation-mode .demo-grid {
+  display: block;
+  height: calc(100vh - 36px);
+  max-width: none;
+}
+
+.presentation-mode .stage-panel {
+  background: #f7f1e3;
+  border-color: rgba(216, 189, 119, 0.58);
+  height: 100%;
+  padding: 22px;
+}
+
+.presentation-mode .section-heading,
+.presentation-mode .visual-support {
+  display: none;
+}
+
+.presentation-mode .site-plan {
+  height: 100%;
+  min-height: 0;
+}
+
+.presentation-mode .parcel-boundary {
+  min-height: 0;
 }
 
 @keyframes pop-in {

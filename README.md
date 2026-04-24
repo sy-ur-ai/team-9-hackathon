@@ -194,6 +194,20 @@ Install dependencies:
 npm install
 ```
 
+Create a local env file:
+
+```bash
+cp .env.example .env
+```
+
+Then add your real OpenAI key to `.env`:
+
+```text
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-5.4-mini
+VITE_OPENAI_MODEL=gpt-5.4-mini
+```
+
 Run the local demo:
 
 ```bash
@@ -217,11 +231,22 @@ npm run preview
 ```text
 src/
   App.tsx             Main demo experience and UI composition
+  config/openai.ts    OpenAI model defaults and env variable names
   demoScript.ts       Luxury park pitch conversation beats
   proposalEngine.ts   Deterministic trigger mapping and proposal state reducer
   types.ts            Shared speaker, transcript, feature, and proposal types
   styles.css          App layout, site plan, panels, and responsive styling
 ```
+
+## Environment Variables
+
+The default OpenAI model is `gpt-5.4-mini`.
+
+- `OPENAI_API_KEY`: local-only secret for future server-side OpenAI calls
+- `OPENAI_MODEL`: server-side default model name
+- `VITE_OPENAI_MODEL`: non-secret model label available to the Vite client
+
+Do not expose `OPENAI_API_KEY` through a `VITE_` variable. Vite embeds `VITE_` variables into the browser bundle, so real OpenAI calls should go through a server-side route or service once that layer exists.
 
 ## PMO-Owned Modules
 

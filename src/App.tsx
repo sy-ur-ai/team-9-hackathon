@@ -2,7 +2,9 @@ import { useMemo, useState } from "react";
 import {
   CircleDollarSign,
   Clock3,
+  Maximize2,
   Mic,
+  Minimize2,
   Play,
   RotateCcw,
   Send,
@@ -11,6 +13,7 @@ import {
 } from "lucide-react";
 import { demoScript } from "./demoScript";
 import { reduceConversation } from "./proposalEngine";
+import { openAIConfig } from "./config/openai";
 import type { ConversationEvent, SiteFeature } from "./types";
 
 const speakerLabels: Record<ConversationEvent["speaker"], string> = {
@@ -23,6 +26,7 @@ function App() {
   const [activeEvents, setActiveEvents] = useState<ConversationEvent[]>([]);
   const [speaker, setSpeaker] = useState<ConversationEvent["speaker"]>("client");
   const [draft, setDraft] = useState("");
+  const [isPresenting, setIsPresenting] = useState(false);
 
   const proposal = useMemo(() => reduceConversation(activeEvents), [activeEvents]);
   const nextBeat = demoScript[activeEvents.length];
@@ -54,16 +58,22 @@ function App() {
   };
 
   return (
-    <main className="app-shell">
-      <header className="topbar">
+    <main className={`app-shell ${isPresenting ? "presentation-mode" : ""}`}>
+      <header className="topbar" aria-hidden={isPresenting}>
         <div>
           <p className="eyebrow">Team 9 Hackathon Demo</p>
           <h1>Live Visual Sales Assistant</h1>
+          <p className="hero-copy">A premium park design-build conversation, converted into a live proposal.</p>
+          <p className="model-pill">Default model: {openAIConfig.defaultModel}</p>
         </div>
         <div className="topbar-actions">
           <button className="secondary-button" type="button" onClick={() => setActiveEvents([])}>
             <RotateCcw size={17} aria-hidden="true" />
             Reset
+          </button>
+          <button className="secondary-button" type="button" onClick={() => setIsPresenting(true)}>
+            <Maximize2 size={17} aria-hidden="true" />
+            Present
           </button>
           <button className="primary-button" type="button" onClick={playNextBeat} disabled={!nextBeat}>
             <Play size={17} aria-hidden="true" />
@@ -74,6 +84,14 @@ function App() {
 
       <section className="demo-grid">
         <div className="stage-panel">
+          {isPresenting ? (
+            <div className="presentation-controls">
+              <button className="secondary-button" type="button" onClick={() => setIsPresenting(false)}>
+                <Minimize2 size={17} aria-hidden="true" />
+                Exit presentation
+              </button>
+            </div>
+          ) : null}
           <div className="section-heading">
             <div>
               <p className="eyebrow">Deterministic site plan</p>
@@ -87,7 +105,7 @@ function App() {
 
           <SitePlan features={visibleFeatures} />
 
-          <div className="metrics-row">
+          <div className="metrics-row visual-support">
             <Metric icon={<CircleDollarSign size={18} />} label="Budget impact" value={proposal.budgetLevel} suffix="%" />
             <Metric icon={<Clock3 size={18} />} label="Timeline" value={proposal.timelineWeeks} suffix=" wks" max={24} />
             <Metric icon={<Trees size={18} />} label="Maintenance" value={proposal.maintenanceLevel} suffix="%" />
