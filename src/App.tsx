@@ -121,18 +121,12 @@ function App() {
         <div className="stage-panel">
           {isPresenting ? (
             <div className="presentation-overlay">
-              <div className="presentation-caption" aria-live="polite">
-                <span>
-                  {latestBeat
-                    ? `${speakerLabels[latestBeat.speaker]} beat ${activeEvents.length} of ${demoScript.length}`
-                    : "Manual presentation ready"}
-                </span>
-                <p>
-                  {latestBeat
-                    ? latestBeat.text
-                    : "Presentation ready. Press the right arrow key to start the exact fallback script."}
-                </p>
-              </div>
+              {latestBeat ? (
+                <div className="presentation-caption" aria-live="polite">
+                  <span>Beat {activeEvents.length}</span>
+                  <p>{latestBeat.text}</p>
+                </div>
+              ) : null}
             </div>
           ) : null}
           <div className="section-heading">

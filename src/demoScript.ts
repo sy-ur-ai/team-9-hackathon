@@ -19,7 +19,7 @@ export const demoScript: ConversationEvent[] = [
   {
     id: "beat-4",
     speaker: "vendor",
-    text: "Then we will keep the pavilion and restrooms in phase two, protect the phase one budget, and lead with the playground, tree buffer, and walking loop.",
+    text: "Then we will keep the pavilion and restrooms in phase two, protect the phase one budget, and lead with the playground and tree buffer.",
   },
   {
     id: "beat-5",
