@@ -172,3 +172,240 @@ The hackathon demo shows the decision and visualization layer. In the future, th
 
 This is a real-time visual sales assistant for design-build firms. It listens to client needs, then turns the vendor's spoken recommendations into live visual plans, tradeoffs, and proposal-ready scope.
 
+# Demo script - initial draft
+
+# 1. 🔥 Opening (0:00–0:30) — *Hook + Reframe*
+
+**Goal:** Make audience instantly feel the pain + inevitability
+
+### Suggested opening (your style: sharp, forward-looking)
+
+> “Most high-value sales conversations today… still end as vague notes, static slides, and follow-ups days later.
+>
+> But the real value actually happens *in the conversation itself.*
+>
+> What if that conversation could instantly become a proposal?”
+
+**Pause → then reveal**
+
+> “What you’re about to see is a real-time visual sales assistant.
+> It listens, understands intent, and turns spoken recommendations into a live, evolving plan.” 
+
+---
+
+# 2. 🎭 Roleplay Setup (0:30–0:45)
+
+**Make it tangible + human**
+
+> “Let’s simulate a real scenario.
+>
+> I’m a design-build firm pitching a private park to a luxury landowner.”
+
+**Introduce roles quickly:**
+
+* “This is our client”
+* “I’ll be the vendor”
+* “The assistant is running live”
+
+👉 *Important:* Tell audience what to watch for
+
+> “Notice:
+> The assistant listens to the client… but only updates visuals when the vendor makes decisions.”
+
+---
+
+# 3. 💡 Engagement Mechanism (CRITICAL)
+
+Don’t just perform → *pull audience in mentally*
+
+Add this line:
+
+> “As we go, think about this:
+> *At what moment would you personally say ‘this is better than a slide deck’?*”
+
+This makes them *actively judge value*.
+
+---
+
+# 4. 🎬 Core Demo Flow (0:45–2:45)
+
+## Phase 1 — Context Capture (Client speaks)
+
+**Client:**
+
+> “I want something family-friendly… but I’m worried about noise near nearby homes.”
+
+**Assistant:**
+
+* Captures: “family-friendly”, “noise sensitivity”
+
+👉 You say:
+
+> “Notice — no visual change yet.
+> We’re just capturing intent.”
+
+---
+
+## Phase 2 — First Magic Moment (Vendor speaks → visual reacts)
+
+**Vendor:**
+
+> “We’ll move the playground to the west side, create a quiet garden walk on the east, and add a tree buffer near the homes.”
+
+💥 **Visual shifts**
+
+### You narrate lightly (don’t overtalk):
+
+> “Now the system is translating design intent into a plan.”
+
+👉 This is your **first WOW moment** (movement on screen)
+
+---
+
+## Phase 3 — Tradeoff Intelligence
+
+**Client:**
+
+> “Will that increase maintenance?”
+
+**Vendor:**
+
+> “Slightly, but we can use native plants to reduce long-term cost.”
+
+💥 Assistant:
+
+* Maintenance meter adjusts
+* Adds “native plants” rationale
+
+👉 You say:
+
+> “We’re not just drawing — we’re tracking tradeoffs in real time.”
+
+---
+
+## Phase 4 — Budget Constraint (Second WOW moment)
+
+**Client:**
+
+> “I’d like to keep this under budget.”
+
+**Vendor:**
+
+> “We’ll move the pavilion to Phase 2.”
+
+💥 Visual:
+
+* Pavilion fades / moves to Phase 2
+* Timeline updates
+
+👉 You hit:
+
+> “This is where decisions become *structured commitments.*”
+
+---
+
+## Phase 5 — Credibility Layer
+
+**Vendor:**
+
+> “We’ll also ensure ADA-friendly walking paths.”
+
+💥 Visual:
+
+* Path highlights
+
+👉 You say:
+
+> “The assistant turns expertise into visible proof.”
+
+---
+
+# 5. 🧠 Subtle Framing (Throughout)
+
+Sprinkle 2–3 of these lines:
+
+* “This removes ambiguity from sales.”
+* “This makes expertise visible.”
+* “This compresses days of follow-up into minutes.”
+* “This is where alignment happens.”
+
+---
+
+# 6. 📊 Final Review (2:45–3:30)
+
+Switch tone → slow down
+
+> “Now let’s look at what we’ve built… *in just a few minutes.*”
+
+Walk through:
+
+* Layout
+* Client priorities
+* Vendor commitments
+* Tradeoffs
+
+👉 Key line:
+
+> “This is no longer a conversation — it’s a decision-ready plan.”
+
+---
+
+# 7. 🎯 Closing (3:30–4:00)
+
+This is where you win or lose.
+
+## Strong close (aligned to your style)
+
+> “Every complex sale today has the same problem:
+>
+> The best thinking happens in the conversation…
+> but the outcome gets lost in translation.
+>
+> We fix that.”
+
+**Pause**
+
+> “We turn conversations into decisions.
+> And decisions into proposals — instantly.”
+
+---
+
+## Optional punch (more visionary)
+
+> “In the future, no high-value sale will end with ‘we’ll follow up.’
+>
+> It will end with *this.*”
+
+---
+
+# 8. 💥 Extra “Alpha” Layer (If you want to stand out)
+
+Add ONE bold line:
+
+> “This isn’t just a sales tool —
+> it’s the interface between human expertise and real-world execution.”
+
+---
+
+# 9. 🧩 Demo Psychology (What’s actually happening)
+
+This demo works because:
+
+* It **keeps human in control** (vendor drives)
+* It **visualizes thinking**, not just output
+* It **creates trust instantly**
+* It **collapses time-to-decision**
+
+👉 That’s the real story — not the park.
+
+---
+
+# 10. If I were you (specific advice)
+
+Push these 3 moments HARD:
+
+1. Playground moves → instant visual reaction
+2. Pavilion shifts to Phase 2 → budget intelligence
+3. Final proposal → emotional closure
+
+Everything else = support.
